@@ -1,0 +1,18 @@
+sp cup 2025 dataset
+Validation Accuracy: 0.9704
+
+Results: {'best_regular': 0.9567057291666666, 'best_swa': 0.9703776041666666, 'final_swa': 0.9703776041666666}
+
+
+Kaggle dataset
+dataset link: https://www.kaggle.com/datasets/manjilkarki/deepfake-and-real-images
+Validation Accuracy: 0.9776
+
+Results: {'best_regular': 0.977604747894897, 'best_swa': 0.977604747894897, 'final_swa': 0.977604747894897}
+
+hugging face dataset
+dataset link: https://huggingface.co/datasets/saakshigupta/deepfake-detection-dataset-v3
+Validation Accuracy: 1.0000
+
+Results: {'best_regular': 1.0, 'best_swa': 1.0, 'final_swa': 1.0}
+

@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "PairCLIP-SWA: Similarity-Guided Balancing and Stochastic Weight Averaging for Generalized Deepfake Image Detection with OpenCLIP"
+type: software
+authors:
+  - family-names: Nakib
+    given-names: Md.
+    affiliation: "Department of Electrical and Electronic Engineering, BUET, Dhaka 1205, Bangladesh"
+  - family-names: Sarkar
+    given-names: Sudipto
+    affiliation: "Department of Electrical and Electronic Engineering, BUET, Dhaka 1205, Bangladesh"
+  - family-names: Talukder
+    given-names: A. J. A. Jubayer
+    affiliation: "Department of Electrical and Electronic Engineering, BUET, Dhaka 1205, Bangladesh"
+  - family-names: Mahmud
+    given-names: Arif
+    affiliation: "Department of Electrical and Electronic Engineering, BUET, Dhaka 1205, Bangladesh"
+repository-code: "https://github.com/DarkJ0Y/PairCLIP-SWA"
+license: MIT
+keywords:
+  - deepfake detection
+  - model selection
+  - stochastic weight averaging
+  - CLIP
+  - OpenCLIP
+  - vision transformer
+  - media forensics
+preferred-citation:
+  type: unpublished
+  title: "PairCLIP-SWA: Similarity-Guided Balancing and Stochastic Weight Averaging for Generalized Deepfake Image Detection with OpenCLIP"
+  authors:
+    - family-names: Nakib
+      given-names: Md.
+    - family-names: Sarkar
+      given-names: Sudipto
+    - family-names: Talukder
+      given-names: A. J. A. Jubayer
+    - family-names: Mahmud
+      given-names: Arif
+  year: 2026
+  notes: "Manuscript submitted for publication"
