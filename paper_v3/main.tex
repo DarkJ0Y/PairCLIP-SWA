@@ -65,28 +65,20 @@ Deepfake Image Detection with OpenCLIP}
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Deepfake detectors are almost always deployed as the single checkpoint that
-scored best on a validation split, yet the reliability of that choice is rarely
-measured. We measure it with PairCLIP-SWA, a single-backbone detector that
-adapts an OpenCLIP ViT-L/14 visual tower by progressive block unfreezing on a
-class-balanced corpus built by CLIP-similarity-guided one-to-one subsampling,
-and averages the fine-tuning trajectory in weight space. Trained in-domain on
-the IEEE SP Cup 2025 (DF-Wild-Cup) benchmark under the same protocol as the
-strongest published three-backbone ensemble, the weight-averaged detector
-reaches 97.04\% accuracy, 98.64\% AU-ROC and a 4.07\% equal error rate, against
-94.46\%, 97.60\% and 5.00\%. Its training log shows why averaging matters: over
-the averaged epochs the non-averaged checkpoint swings across 5.34 points of
-validation accuracy while its validation loss more than doubles, whereas the
-average is never worse and is up to 5.99 points better. On an
-OpenForensics-derived benchmark the same instability becomes a misranking: the
-checkpoint that validation accuracy selects (98.43\%) scores 88.85\% on a
-disjoint 10{,}905-image test partition, rejecting 21.1\% of genuine photographs,
-while the terminal average, ranked last on validation, scores 94.76\%. A study
-of twenty-two in-house configurations on the identical DF-Wild-Cup split,
-including preprocessing ablations, shows that CLIP pre-training rather than
-ensembling drives accuracy, that secondary face cropping costs about 34 points,
-and that frequency-domain inputs transfer poorly. We recommend per-class
-selection criteria measured off the early-stopping split.
+A deepfake detector is almost always deployed as the checkpoint that scored best
+on a validation split. We show that this habit is unreliable. Across a single
+fine-tuning run, the validation accuracy of individual checkpoints swings by more
+than five points from one epoch to the next, so the selected checkpoint is a
+maximum over noise rather than a measurement of quality. On a held-out test
+partition this becomes a misranking: the checkpoint with the best validation
+accuracy ($98.4\%$) falls to $88.9\%$ because it rejects one in five genuine
+photographs as fake, while the model ranked last on validation reaches
+$94.8\%$. Averaging weights along the training trajectory removes much of this
+variance at no inference cost. Building on this, we present PairCLIP-SWA, a
+single OpenCLIP vision transformer adapted by progressive unfreezing and weight
+averaging, which reaches $97.0\%$ accuracy on DF-Wild-Cup against $94.5\%$ for
+the strongest published three-network ensemble. Ablations show that
+pre-training, rather than ensembling, accounts for most of the gain.
 \end{abstract}
 
 \begin{IEEEkeywords}
