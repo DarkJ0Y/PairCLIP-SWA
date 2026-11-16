@@ -65,20 +65,23 @@ Deepfake Image Detection with OpenCLIP}
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-A deepfake detector is almost always deployed as the checkpoint that scored best
-on a validation split. We show that this habit is unreliable. Across a single
-fine-tuning run, the validation accuracy of individual checkpoints swings by more
-than five points from one epoch to the next, so the selected checkpoint is a
-maximum over noise rather than a measurement of quality. On a held-out test
-partition this becomes a misranking: the checkpoint with the best validation
-accuracy ($98.4\%$) falls to $88.9\%$ because it rejects one in five genuine
-photographs as fake, while the model ranked last on validation reaches
-$94.8\%$. Averaging weights along the training trajectory removes much of this
-variance at no inference cost. Building on this, we present PairCLIP-SWA, a
-single OpenCLIP vision transformer adapted by progressive unfreezing and weight
-averaging, which reaches $97.0\%$ accuracy on DF-Wild-Cup against $94.5\%$ for
-the strongest published three-network ensemble. Ablations show that
-pre-training, rather than ensembling, accounts for most of the gain.
+Deepfake detectors are usually chosen in one simple way: train for many epochs,
+then keep the checkpoint with the highest accuracy on a validation set. We show
+that this choice is less reliable than it looks. During a single training run,
+validation accuracy changes by more than five points from one epoch to the next,
+so the ``best'' checkpoint is partly a matter of luck. On a separate test set,
+the checkpoint with the best validation accuracy ($98.4\%$) drops to $88.9\%$,
+because it wrongly labels about one in five real photographs as fake, while a
+model that ranked last on validation scores $94.8\%$. Averaging the model's
+weights over the final epochs makes training much steadier and costs nothing at
+test time. We build on this idea in PairCLIP-SWA, a single OpenCLIP vision
+transformer that is fine-tuned by unfreezing more layers step by step and is
+then weight-averaged. On the DF-Wild-Cup benchmark it reaches $97.0\%$ accuracy,
+compared with $94.5\%$ for the best published ensemble of three networks. Our
+experiments also show that strong pre-training matters more than combining
+several models. We therefore recommend checking each class separately, using
+data that was not used for early stopping, and preferring weight averaging to
+picking a single checkpoint.
 \end{abstract}
 
 \begin{IEEEkeywords}
