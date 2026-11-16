@@ -65,28 +65,27 @@ Deepfake Image Detection with OpenCLIP}
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Deepfake detectors are almost always deployed as the single checkpoint that
-scored best on a validation split, yet the reliability of that choice is rarely
-measured. We measure it with PairCLIP-SWA, a single-backbone detector that
-adapts an OpenCLIP ViT-L/14 visual tower by progressive block unfreezing on a
-class-balanced corpus built by CLIP-similarity-guided one-to-one subsampling,
-and averages the fine-tuning trajectory in weight space. Trained in-domain on
-the IEEE SP Cup 2025 (DF-Wild-Cup) benchmark under the same protocol as the
-strongest published three-backbone ensemble, the weight-averaged detector
-reaches 97.04\% accuracy, 98.64\% AU-ROC and a 4.07\% equal error rate, against
-94.46\%, 97.60\% and 5.00\%. Its training log shows why averaging matters: over
-the averaged epochs the non-averaged checkpoint swings across 5.34 points of
-validation accuracy while its validation loss more than doubles, whereas the
-average is never worse and is up to 5.99 points better. On an
-OpenForensics-derived benchmark the same instability becomes a misranking: the
-checkpoint that validation accuracy selects (98.43\%) scores 88.85\% on a
-disjoint 10{,}905-image test partition, rejecting 21.1\% of genuine photographs,
-while the terminal average, ranked last on validation, scores 94.76\%. A study
-of twenty-two in-house configurations on the identical DF-Wild-Cup split,
-including preprocessing ablations, shows that CLIP pre-training rather than
-ensembling drives accuracy, that secondary face cropping costs about 34 points,
-and that frequency-domain inputs transfer poorly. We recommend per-class
-selection criteria measured off the early-stopping split.
+Deepfake detectors are usually deployed as the single checkpoint that scored
+best on a validation split, yet how reliable that choice is has rarely been
+examined. We study this question through PairCLIP-SWA, a single-backbone
+detector that progressively unfreezes an OpenCLIP ViT-L/14 visual tower on a
+class-balanced corpus built by CLIP-similarity-guided subsampling, and averages
+the fine-tuning trajectory in weight space. Trained in-domain on the IEEE SP Cup
+2025 (DF-Wild-Cup) benchmark under the protocol of the strongest published
+three-backbone ensemble, the averaged detector improves on it in accuracy,
+AU-ROC and equal error rate, while using one network and a fraction of the
+training images. The training log explains why: the non-averaged checkpoint
+fluctuates markedly from epoch to epoch, whereas the weight average is never
+worse. On an OpenForensics-derived benchmark this instability becomes a
+misranking: the checkpoint chosen by validation accuracy makes roughly twice as
+many errors on a disjoint test partition as the terminal average, chiefly by
+rejecting genuine photographs, a failure that scalar accuracy on a balanced
+split cannot reveal. A design-space study further indicates that CLIP
+pre-training, rather than ensembling, drives accuracy, while secondary face
+cropping and frequency-domain inputs discard transferable evidence. We
+therefore recommend selecting detectors on per-class criteria measured on a
+partition disjoint from early stopping, and preferring weight averaging to
+single-checkpoint selection.
 \end{abstract}
 
 \begin{IEEEkeywords}
