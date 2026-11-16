@@ -65,27 +65,27 @@ Deepfake Image Detection with OpenCLIP}
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Deepfake detectors are usually deployed as the single checkpoint that scored
-best on a validation split, yet how reliable that choice is has rarely been
-examined. We study this question through PairCLIP-SWA, a single-backbone
-detector that progressively unfreezes an OpenCLIP ViT-L/14 visual tower on a
-class-balanced corpus built by CLIP-similarity-guided subsampling, and averages
-the fine-tuning trajectory in weight space. Trained in-domain on the IEEE SP Cup
-2025 (DF-Wild-Cup) benchmark under the protocol of the strongest published
-three-backbone ensemble, the averaged detector improves on it in accuracy,
-AU-ROC and equal error rate, while using one network and a fraction of the
-training images. The training log explains why: the non-averaged checkpoint
-fluctuates markedly from epoch to epoch, whereas the weight average is never
-worse. On an OpenForensics-derived benchmark this instability becomes a
-misranking: the checkpoint chosen by validation accuracy makes roughly twice as
-many errors on a disjoint test partition as the terminal average, chiefly by
-rejecting genuine photographs, a failure that scalar accuracy on a balanced
-split cannot reveal. A design-space study further indicates that CLIP
-pre-training, rather than ensembling, drives accuracy, while secondary face
-cropping and frequency-domain inputs discard transferable evidence. We
-therefore recommend selecting detectors on per-class criteria measured on a
-partition disjoint from early stopping, and preferring weight averaging to
-single-checkpoint selection.
+Generalization is the central difficulty of deepfake detection, yet the step
+that decides which trained model is actually reported or deployed is seldom
+examined: it is usually the single epoch that scores highest on a held-back
+validation set. This paper asks how far that choice can be trusted. We
+introduce PairCLIP-SWA, a one-network detector that adapts the visual tower of a
+large contrastively pre-trained vision transformer block by block, trains it on
+a class-balanced subsample of the data, and averages its weights along the
+fine-tuning trajectory. Under an identical in-domain protocol on the
+DF-Wild-Cup benchmark, it surpasses the strongest published three-network
+ensemble by about $2.6$ points of accuracy with a single forward pass. The
+training record shows why averaging matters: individual checkpoints fluctuate
+strongly from epoch to epoch, while the average is steadier and never worse. On
+a second in-the-wild benchmark, the checkpoint ranked first on validation falls
+behind the averaged model on an untouched test partition and makes roughly
+twice as many errors, almost all of them genuine photographs flagged as
+manipulated, a one-sided failure that overall accuracy conceals. Ablations
+further indicate that pre-training, not ensembling, drives performance, and
+that secondary face cropping and frequency-domain inputs discard transferable
+evidence. We therefore advocate selecting detectors on per-class criteria,
+using data disjoint from early stopping, and averaging weights rather than
+picking a single checkpoint.
 \end{abstract}
 
 \begin{IEEEkeywords}
