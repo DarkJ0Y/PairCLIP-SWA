@@ -65,27 +65,21 @@ Deepfake Image Detection with OpenCLIP}
 
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Generalization is the central difficulty of deepfake detection, yet the step
-that decides which trained model is actually reported or deployed is seldom
-examined: it is usually the single epoch that scores highest on a held-back
-validation set. This paper asks how far that choice can be trusted. We
-introduce PairCLIP-SWA, a one-network detector that adapts the visual tower of a
-large contrastively pre-trained vision transformer block by block, trains it on
-a class-balanced subsample of the data, and averages its weights along the
-fine-tuning trajectory. Under an identical in-domain protocol on the
-DF-Wild-Cup benchmark, it surpasses the strongest published three-network
-ensemble by about $2.6$ points of accuracy with a single forward pass. The
-training record shows why averaging matters: individual checkpoints fluctuate
-strongly from epoch to epoch, while the average is steadier and never worse. On
-a second in-the-wild benchmark, the checkpoint ranked first on validation falls
-behind the averaged model on an untouched test partition and makes roughly
-twice as many errors, almost all of them genuine photographs flagged as
-manipulated, a one-sided failure that overall accuracy conceals. Ablations
-further indicate that pre-training, not ensembling, drives performance, and
-that secondary face cropping and frequency-domain inputs discard transferable
-evidence. We therefore advocate selecting detectors on per-class criteria,
-using data disjoint from early stopping, and averaging weights rather than
-picking a single checkpoint.
+Deepfake detectors are usually deployed as the single epoch that scores best on
+a held-back validation set, a choice that is seldom examined. We study how far
+it can be trusted through PairCLIP-SWA, a one-network detector that adapts a
+large pre-trained CLIP vision transformer block by block on a class-balanced
+subsample and averages its weights along the fine-tuning trajectory. On the
+DF-Wild-Cup benchmark it surpasses the strongest published three-network
+ensemble with a single forward pass. Its training record shows that individual
+checkpoints fluctuate strongly between epochs, whereas the average is steadier
+and never worse. On a second benchmark, the checkpoint ranked first on
+validation makes roughly twice as many errors on an untouched test partition as
+the averaged model, almost all of them genuine photographs flagged as fake, a
+failure that overall accuracy conceals. Ablations show that pre-training, not
+ensembling, drives performance. We recommend per-class selection criteria on
+data disjoint from early stopping, and weight averaging over single-checkpoint
+selection.
 \end{abstract}
 
 \begin{IEEEkeywords}
